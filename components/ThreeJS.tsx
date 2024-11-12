@@ -106,7 +106,7 @@ export default function ThreeScene() {
         KeyD: false,
     };
       
-    const handleKeyDown = (event: any) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
         switch (event.code) {
             case 'KeyW':
             activeKeys.KeyW = true;
@@ -127,7 +127,7 @@ export default function ThreeScene() {
         }
     };
     
-    const handleKeyUp = (event: any) => {
+    const handleKeyUp = (event: KeyboardEvent) => {
         switch (event.code) {
           case 'KeyW':
             activeKeys.KeyW = false;
@@ -156,7 +156,7 @@ export default function ThreeScene() {
         }
     };
 
-    const handleMouseMove = (event:any) => {
+    const handleMouseMove = (event:MouseEvent) => {
         const sensitivity = 0.0015;
       
         // Update only yaw (horizontal rotation) based on mouse X movement
@@ -269,8 +269,8 @@ export default function ThreeScene() {
     }    
 
     function updateBullets() {
-       for(let bullet of bullets){
-            bullet.update(entities,300,bullets)
+       for(const bullet of bullets){
+          bullet.update(entities,300,bullets)
        }
     }   
     
