@@ -1,7 +1,28 @@
 import * as THREE from 'three';
 
 export default class Wall {
-  constructor(height, thickness, length, color = 0x808080, texture = undefined, posX = 0, posY = 0, posZ = 0, rotateY = 0) {
+  height: number;
+  thickness: number;
+  length: number;
+  color: number;
+  texture: string | undefined;
+  posX: number;
+  posY: number;
+  posZ: number;
+  rotateY: number;
+  mesh: THREE.Mesh;
+
+  constructor(
+    height: number,
+    thickness: number,
+    length: number,
+    color: number = 0x808080,
+    texture: string | undefined = undefined,
+    posX: number = 0,
+    posY: number = 0,
+    posZ: number = 0,
+    rotateY: number = 0
+  ) {
     this.height = height;
     this.thickness = thickness;
     this.length = length;
@@ -15,11 +36,11 @@ export default class Wall {
     this.mesh = this.createWall();
   }
 
-  createWall() {
+  createWall(): THREE.Mesh {
     const wallGeometry = new THREE.BoxGeometry(this.length, this.height, this.thickness);
     const textureLoader = new THREE.TextureLoader();
 
-    let wallMaterial;
+    let wallMaterial: THREE.Material;
     if (this.texture) {
       const wallTexture = textureLoader.load(this.texture);
       wallTexture.wrapS = THREE.RepeatWrapping;
@@ -39,7 +60,7 @@ export default class Wall {
     return wall;
   }
 
-  addToScene(scene) {
+  addToScene(scene: THREE.Scene): void {
     scene.add(this.mesh);
   }
 }

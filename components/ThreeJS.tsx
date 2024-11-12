@@ -3,7 +3,7 @@ import { useEffect,useRef,useState } from 'react'
 import { useRouter } from 'next/navigation'
 import * as THREE from 'three'
 
-import Floor from './FloorClass'
+import Floor from "./FloorClass"
 import Wall from "./WallClass"
 import Bullet from "./BulletClass"
 import Entity from "./EntityClass"

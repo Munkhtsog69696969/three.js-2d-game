@@ -1,28 +1,34 @@
 import * as THREE from 'three';
 
 export default class Floor {
-  constructor(width = 300, depth = 300, color = 0x808080, textureUrl= null) {
+  width: number;
+  depth: number;
+  color: number;
+  textureUrl: string | null;
+  mesh: THREE.Mesh;
+
+  constructor(width: number = 300, depth: number = 300, color: number = 0x808080, textureUrl: string | null = null) {
     this.width = width;
     this.depth = depth;
     this.color = color;
     this.textureUrl = textureUrl;
-    
+
     // Create the floor mesh
     this.mesh = this.createFloor();
   }
 
-  createFloor() {
+  createFloor(): THREE.Mesh {
     // Floor geometry
     const floorGeometry = new THREE.PlaneGeometry(this.width, this.depth);
 
     // Load texture if provided, else create a basic material with color
-    let floorMaterial;
+    let floorMaterial: THREE.MeshStandardMaterial;
     if (this.textureUrl) {
       const textureLoader = new THREE.TextureLoader();
       const floorTexture = textureLoader.load(this.textureUrl);
       floorTexture.wrapS = THREE.RepeatWrapping;
       floorTexture.wrapT = THREE.RepeatWrapping;
-      floorTexture.repeat.set(20,20); // Adjust repeat for tiling effect
+      floorTexture.repeat.set(20, 20); // Adjust repeat for tiling effect
       floorMaterial = new THREE.MeshStandardMaterial({ map: floorTexture });
     } else {
       floorMaterial = new THREE.MeshStandardMaterial({ color: this.color });
@@ -36,7 +42,7 @@ export default class Floor {
     return floor;
   }
 
-  addToScene(scene) {
+  addToScene(scene: THREE.Scene): void {
     scene.add(this.mesh);
   }
 }
