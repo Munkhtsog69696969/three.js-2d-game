@@ -95,9 +95,9 @@ export default function ThreeScene() {
     cube.position.set(10,1,0)
     scene.add(cube);
 
-    let bullets: Bullet[] = [];
-    let entities: Entity[]=[]
-    let healths: Health[]=[]
+    const bullets: Bullet[] = [];
+    const entities: Entity[]=[]
+    const healths: Health[]=[]
 
     const activeKeys = {
         KeyW: false,
